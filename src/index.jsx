@@ -31,12 +31,17 @@ import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
 import {Provider} from 'react-redux';
 
+
+
 import {unit, weather, weatherForm, forecast} from 'states/weather-reducers.js';
 
 import {postForm, MainRe,TodayRe,Tool} from 'states/post-reducers.js';
 
 import {connect} from 'react-redux';
 
+
+
+import {order} from 'states/order-reducers.js';
 
 
 
@@ -54,7 +59,8 @@ export default class Index extends React.Component{
             postForm,      ///////// new
             MainRe,
             TodayRe,
-            Tool
+            Tool,
+            order
         }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
     }
 

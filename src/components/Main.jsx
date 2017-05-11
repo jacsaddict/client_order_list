@@ -22,6 +22,15 @@ import {Provider} from 'react-redux';
 
 import {connect} from 'react-redux';
 
+////////////////////
+
+import Order from 'components/Order.jsx';
+
+import ShoppingCart from 'components/ShoppingCart.jsx';
+
+
+
+////////////////////
 import Today from 'components/Today.jsx';
 import Forecast from 'components/Forecast.jsx';
 import {unit, weather, weatherForm, forecast} from 'states/weather-reducers.js';
@@ -35,16 +44,25 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.state = {
-        //     navbarToggle: false,
-        //     searchText: ''
-        // };
+        this.state = {
+            // navbarToggle: false,
+            // searchText: ''
+            PanCakeQuaint:
+              {
+                origin: 0,
+                honey:  0,
+
+              }
+        };
         //this.store = null;
         this.searchEl = null;
 
         this.handleNavbarToggle = this.handleNavbarToggle.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.handleClearSearch = this.handleClearSearch.bind(this);
+
+
+
     }
 
     componentWillMount() {
@@ -72,10 +90,16 @@ class Main extends React.Component {
                                     <Collapse isOpen={this.props.navbarToggle} navbar>
                                         <Nav navbar>
                                             <NavItem>
-                                                <NavLink tag={Link} to='/'>Today</NavLink>
+                                                <NavLink tag={Link} to='/order'>開始點餐</NavLink>
                                             </NavItem>
                                             <NavItem>
-                                                <NavLink tag={Link} to='/forecast'>Forecast</NavLink>
+                                                <NavLink tag={Link} to='/favorite'>我的最愛</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink tag={Link} to='/contact-us'>聯絡我們</NavLink>
+                                            </NavItem>
+                                            <NavItem>
+                                                <NavLink tag={Link} to='/shopping-cart'>購物車</NavLink>
                                             </NavItem>
                                         </Nav>
                                         <div className='search ml-auto'>
@@ -84,16 +108,17 @@ class Main extends React.Component {
                                                 <i className='navbar-text fa fa-times' onClick={this.handleClearSearch}></i>
                                             }
                                         </div>
+
                                     </Collapse>
                                 </Navbar>
                             </div>
                         </div>
 
-                        <Route exact path="/" render={() => (
-                            <Today searchText={this.props.searchText} />
+                        <Route exact path="/order" render={() => (
+                            <Order/>
                         )}/>
-                        <Route exact path="/forecast" render={() => (
-                            <Forecast />
+                        <Route exact path="/shopping-cart" render={() => (
+                            <ShoppingCart />
                         )}/>
                         <div className='footer'>
                             DataLab.
@@ -102,6 +127,8 @@ class Main extends React.Component {
                 </Router>
         );
     }
+
+
 
     handleNavbarToggle() {
         // this.setState((prevState, props) => ({
@@ -126,6 +153,9 @@ class Main extends React.Component {
         // });
         this.props.dispatch(SearchInput(''));
         this.searchEl.value = '';
+    }
+    DataToCart(){
+
     }
 }
 
