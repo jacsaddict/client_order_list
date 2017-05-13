@@ -52,17 +52,19 @@ export default class Order extends React.Component {
   render(){
     return(
       <div>
+      <Navbar color='faded' light toggleable>
       <Collapse isOpen={true} navbar>
           <Nav navbar>
               <NavItem>
-                  <NavLink onClick={this.handlePanCakeList}>鬆餅</NavLink>
+                  <NavLink onClick={this.handlePanCakeList}><Button color="secondary">鬆餅</Button></NavLink>
 
               </NavItem>
               <NavItem>
-                  <NavLink onClick={this.handleDrinkList}>飲品</NavLink>
+                  <NavLink onClick={this.handleDrinkList}><Button color="secondary">飲品</Button></NavLink>
               </NavItem>
           </Nav>
         </Collapse>
+      </Navbar>
 
 
           {this.state.DrinkList_open === 1 && <DrinkList />}
@@ -79,15 +81,11 @@ export default class Order extends React.Component {
       PanCakeList_open : 1,
       DrinkList_open : 0
     })
-    console.log("11111");
-    //console.log("hipancake");
   }
   handleDrinkList(){
     this.setState({
       DrinkList_open : 1,
       PanCakeList_open : 0
     })
-    console.log("222222");
-    //console.log("drink");
   }
 }

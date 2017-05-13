@@ -10,7 +10,7 @@ import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
 
 
-import {add} from 'states/order-actions.js';
+import {add,minus,add_to_cart} from 'states/order-actions.js';
 
 
 import {
@@ -36,8 +36,9 @@ class PanCakeItem extends React.Component{
 
           // this.add = this.add.bind(this);
           // this.minus = this.minus.bind(this);
-          this.func = this.func.bind(this);
-
+          this.func_add = this.func_add.bind(this);
+          this.func_minus = this.func_minus.bind(this);
+          this.func_add_to_cart = this.func_add_to_cart.bind(this);
 
   }
 
@@ -62,20 +63,34 @@ class PanCakeItem extends React.Component{
       // }
 
 
-      func(id)
+      func_add(id)
       {
         this.props.dispatch(add(id));
         this.forceUpdate();
       }
 
+      func_minus(id)
+      {
+        if(this.props.quantity[id] > 0)
+            this.props.dispatch(minus(id));
+        this.forceUpdate();
+      }
+
+      func_add_to_cart(id)
+      {
+        this.props.dispatch(add_to_cart(id));
+        this.forceUpdate();
+      }
+
+
         render(){
             return(
               <div>
                 <span>{this.props.text}</span>
-                <button >-</button>
+                <button onClick={() => this.func_minus(this.props.id_num)}>-</button>
                 <span>{this.props.quantity[this.props.id_num]}</span>
-                <button  onClick={() => this.func(this.props.id_num)}>+</button>
-                <button >加入購物車</button>
+                <button  onClick={() => this.func_add(this.props.id_num)}>+</button>
+                <button onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
               </div>
             )
         }

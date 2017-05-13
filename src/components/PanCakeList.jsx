@@ -63,6 +63,8 @@ export default class PanCakeList extends React.Component{
             </Collapse> */}
 
             <PanCakeItem text = {"原味鬆餅"} id_num = {0}/>
+            <PanCakeItem text = {"巧克力鬆餅"} id_num = {1}/>
+            <PanCakeItem text = {"鬆餅"} id_num = {2}/>
             </div>
 
         )

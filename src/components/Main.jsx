@@ -21,15 +21,17 @@ import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
 
 import {connect} from 'react-redux';
+import { Container, Row, Col } from 'reactstrap';
 
 ////////////////////
-
+import Slider from 'react-image-slider';
 import Order from 'components/Order.jsx';
 
 import ShoppingCart from 'components/ShoppingCart.jsx';
 
+import Contact from 'components/Contact.jsx';
 
-
+import Record from 'components/Record.jsx';
 ////////////////////
 import Today from 'components/Today.jsx';
 import Forecast from 'components/Forecast.jsx';
@@ -39,21 +41,17 @@ import {NavbarToggle, SearchInput} from 'states/post-actions.js';
 
 
 import './Main.css';
-
+const images = [
+      'images/ig1.png',
+            'images/ig3.png',
+                  'images/ig4.png',
+                        'images/ig5.png',
+                        'images/ig6.png',
+                        'images/ig7.png'
+];
 class Main extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            // navbarToggle: false,
-            // searchText: ''
-            PanCakeQuaint:
-              {
-                origin: 0,
-                honey:  0,
-
-              }
-        };
         //this.store = null;
         this.searchEl = null;
 
@@ -86,14 +84,14 @@ class Main extends React.Component {
                             <div className='container'>
                                 <Navbar color='faded' light toggleable>
                                     <NavbarToggler right onClick={this.handleNavbarToggle}/>
-                                    <NavbarBrand className='text-info' href="/">WeatherMood</NavbarBrand>
+                                    <NavbarBrand className='text-info' href="/">高菲鬆餅屋</NavbarBrand>
                                     <Collapse isOpen={this.props.navbarToggle} navbar>
                                         <Nav navbar>
                                             <NavItem>
                                                 <NavLink tag={Link} to='/order'>開始點餐</NavLink>
                                             </NavItem>
                                             <NavItem>
-                                                <NavLink tag={Link} to='/favorite'>我的最愛</NavLink>
+                                                <NavLink tag={Link} to='/record'>訂單紀錄</NavLink>
                                             </NavItem>
                                             <NavItem>
                                                 <NavLink tag={Link} to='/contact-us'>聯絡我們</NavLink>
@@ -117,11 +115,32 @@ class Main extends React.Component {
                         <Route exact path="/order" render={() => (
                             <Order/>
                         )}/>
+                        <Route exact path="/record" render={() => (
+                            <Record/>
+                        )}/>
+                        <Route exact path="/contact-us" render={() => (
+                            <Contact/>
+                        )}/>
                         <Route exact path="/shopping-cart" render={() => (
                             <ShoppingCart />
                         )}/>
+
+                        <Slider images={images} isInfinite delay={5000}>
+        {images.map((image, key) => <div key={key}><img src={image} /></div>)}
+      </Slider>
+
+                        <br/>
+                        <br/>
+                        <Row id="but_row">
+                          <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/order' id="icon1" ><img src={`images/icon-eat.png`} id="image1"/></Button></Col>
+                          <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/record' id="icon1" ><img src={`images/icon-list.png`} id="image1"/></Button></Col>
+                        </Row>
+                        <Row id="but_row">
+                          <Col xs="6" className="main-button"><Button color="warning" href="tel:0984060967" tag={Link} to='/contact-us' id="icon1" ><img src={`images/icon-t.png`} id="image1"/><a ></a></Button></Col>
+                          <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/shopping-cart' id="icon1" ><img src={`images/icon-c.png`} id="image1"/></Button></Col>
+                        </Row>
                         <div className='footer'>
-                            DataLab.
+                            DeekLab.
                         </div>
                     </div>
                 </Router>
@@ -154,9 +173,7 @@ class Main extends React.Component {
         this.props.dispatch(SearchInput(''));
         this.searchEl.value = '';
     }
-    DataToCart(){
 
-    }
 }
 
 

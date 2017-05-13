@@ -5,17 +5,25 @@ html, body {
 .weather-bg {
     /*height: 100%;*/
     background-position: center;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
     background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/pan.jpg');
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
 }
 
 .weather-bg .mask {
-    width: 100%;
+    width: 0%;
     height: 100%;
+    size: 100%;
+    opacity: 0.6;
     position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    background-image: url('../images/panis.jpg');
     z-index: -1;
     transition: all 0.6s;
 }
