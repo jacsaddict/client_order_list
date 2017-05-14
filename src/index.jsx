@@ -41,7 +41,7 @@ import {connect} from 'react-redux';
 
 
 
-import {order,order2,record} from 'states/order-reducers.js';
+import {order,order2,record,MainButton} from 'states/order-reducers.js';
 
 
 
@@ -62,7 +62,8 @@ export default class Index extends React.Component{
             Tool,
             order,
             order2,
-            record
+            record,
+            MainButton
         }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
     }
 

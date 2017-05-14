@@ -24,7 +24,7 @@ import {connect} from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 
 ////////////////////
-import Slider from 'react-image-slider';
+import Slider from 'react-slick';
 import Order from 'components/Order.jsx';
 
 import ShoppingCart from 'components/ShoppingCart.jsx';
@@ -40,6 +40,9 @@ import {postForm, MainRe} from 'states/post-reducers.js';
 import {NavbarToggle, SearchInput} from 'states/post-actions.js';
 
 
+import ReactFBLike from 'react-fb-like';
+
+
 import './Main.css';
 const images = [
       'images/ig1.png',
@@ -53,12 +56,15 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         //this.store = null;
+        // this.state = {
+        //     display : true
+        // };
         this.searchEl = null;
 
         this.handleNavbarToggle = this.handleNavbarToggle.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
         this.handleClearSearch = this.handleClearSearch.bind(this);
-
+        // this.main_button_onclick = this.main_button_onclick.bind(this);
 
 
     }
@@ -76,6 +82,14 @@ class Main extends React.Component {
     }
 
     render() {
+      var settings = {
+             dots: true,
+             slidesToShow: 3,
+             infinite: true,
+             autoplay: true,
+             autoplaySpeed: 2000,
+             arrows: false,
+          }
         return (
             //<Provider store={this.store}>
                 <Router>
@@ -99,6 +113,9 @@ class Main extends React.Component {
                                             <NavItem>
                                                 <NavLink tag={Link} to='/shopping-cart'>購物車</NavLink>
                                             </NavItem>
+                                            <NavItem>
+                                                <NavLink href="tel:0984060967">打個電話</NavLink>
+                                            </NavItem>
                                         </Nav>
                                         <div className='search ml-auto'>
                                             <Input className='ml-auto' type='text' getRef={this.searchEl} placeholder='Search' onKeyPress={this.handleSearchKeyPress} getRef={e => this.searchEl = e}></Input>{
@@ -112,6 +129,30 @@ class Main extends React.Component {
                             </div>
                         </div>
 
+                        <ReactFBLike language="us_EN" appId="717589285046812" version="v2.8" />
+
+                        <div className="slider-container">
+                          <Slider  {...settings} >
+                            {images.map((image, key) => <div key={key}><img src={image} /></div>)}
+                          </Slider>
+                        </div>
+
+                        <br/>
+                        <br/>
+
+                        {
+                          this.props.display === true &&
+                        <div>
+                          <Row id="but_row">
+                            <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/order' id="icon1" ><img src={`images/icon-eat.png`} id="image1"/><p>開始點餐</p></Button></Col>
+                            <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/record' id="icon1"><img src={`images/icon-list.png`} id="image1"/><p>訂餐記錄</p></Button></Col>
+                          </Row>
+                          <Row id="but_row">
+                            <Col xs="6" className="main-button"><Button color="warning" href="tel:0984060967" tag={Link} to='/contact-us' id="icon1" ><img src={`images/icon-t.png`} id="image1"/><p>聯絡我們</p></Button></Col>
+                            <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/shopping-cart' id="icon1" ><img src={`images/icon-c.png`} id="image1"/><p>購物車</p></Button></Col>
+                          </Row>
+                        </div>
+                        }
                         <Route exact path="/order" render={() => (
                             <Order/>
                         )}/>
@@ -124,30 +165,21 @@ class Main extends React.Component {
                         <Route exact path="/shopping-cart" render={() => (
                             <ShoppingCart />
                         )}/>
-
-                        <Slider images={images} isInfinite delay={5000}>
-        {images.map((image, key) => <div key={key}><img src={image} /></div>)}
-      </Slider>
-
-                        <br/>
-                        <br/>
-                        <Row id="but_row">
-                          <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/order' id="icon1" ><img src={`images/icon-eat.png`} id="image1"/></Button></Col>
-                          <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/record' id="icon1" ><img src={`images/icon-list.png`} id="image1"/></Button></Col>
-                        </Row>
-                        <Row id="but_row">
-                          <Col xs="6" className="main-button"><Button color="warning" href="tel:0984060967" tag={Link} to='/contact-us' id="icon1" ><img src={`images/icon-t.png`} id="image1"/><a ></a></Button></Col>
-                          <Col xs="6" className="main-button"><Button color="warning" tag={Link} to='/shopping-cart' id="icon1" ><img src={`images/icon-c.png`} id="image1"/></Button></Col>
-                        </Row>
-                        <div className='footer'>
-                            DeekLab.
-                        </div>
                     </div>
                 </Router>
         );
     }
 
 
+    // main_button_onclick(){
+    //   console.log(this.state.display);
+    //     this.setState(
+    //       {
+    //         display: !this.state.display
+    //       }
+    //     );
+    //     forceUpdate();
+    // }
 
     handleNavbarToggle() {
         // this.setState((prevState, props) => ({
@@ -180,6 +212,7 @@ class Main extends React.Component {
 
 export default connect((state) => {
     return {
-        ...state.MainRe
+        ...state.MainRe,
+        ...state.MainButton
     };
 })(Main);

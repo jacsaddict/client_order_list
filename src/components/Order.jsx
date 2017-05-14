@@ -31,11 +31,11 @@ import PanCakeList from 'components/PanCakeList.jsx';
 import DrinkList from 'components/DrinkList.jsx';
 
 
+import {main_display} from 'states/order-actions.js';
 
 
 
-
-export default class Order extends React.Component {
+class Order extends React.Component {
 
   //static propTypes
   constructor(props) {
@@ -49,10 +49,19 @@ export default class Order extends React.Component {
     this.handlePanCakeList = this.handlePanCakeList.bind(this);
     this.handleDrinkList   = this.handleDrinkList.bind(this);
   }
+
+  componentDidMount() {
+      this.props.dispatch(main_display());
+  }
+
+  componentWillUnmount() {
+      this.props.dispatch(main_display());
+  }
+
   render(){
     return(
       <div>
-      <Navbar color='faded' light toggleable>
+      {/* <Navbar color='faded' light toggleable>
       <Collapse isOpen={true} navbar>
           <Nav navbar>
               <NavItem>
@@ -64,9 +73,15 @@ export default class Order extends React.Component {
               </NavItem>
           </Nav>
         </Collapse>
-      </Navbar>
+      </Navbar> */}
 
 
+
+                <Button color="secondary" onClick={this.handlePanCakeList}>鬆餅</Button>
+                <Button color="secondary" onClick={this.handleDrinkList}>飲品</Button>
+
+
+                <Button tag={Link} to=''>返回</Button>
           {this.state.DrinkList_open === 1 && <DrinkList />}
           {this.state.PanCakeList_open === 1 && <PanCakeList />}
 
@@ -89,3 +104,12 @@ export default class Order extends React.Component {
     })
   }
 }
+
+
+
+
+export default connect((state) => {
+    return {
+        ...state.MainButton
+    };
+})(Order);

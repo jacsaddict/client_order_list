@@ -26,6 +26,12 @@ export function delete_from_cart_pancake(item){
         item
   };
 }
+export function clear_pancake(){
+    return{
+        type: '@ORDER/CLEARPANCAKE'
+    }
+}
+
 
 ////////////////   drink     /////////////////
 export function add_drink(id){
@@ -52,6 +58,12 @@ export function delete_from_cart_drink(item){
         item
   };
 }
+export function clear_drink(){
+    return{
+        type : '@ORDER2/CLEARDRINK'
+    };
+}
+
 
 
 
@@ -63,5 +75,15 @@ export function submit(p1,p2){
         type: '@RECORD/SUBMIT',
         p1,
         p2
+    }
+}
+
+
+
+/////////////    MainButton     //////////////
+
+export function main_display(){
+    return{
+      type: '@MAINBUTTON/MAINDISPLAY'
     }
 }

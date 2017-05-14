@@ -7,6 +7,20 @@ import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
 import {Provider} from 'react-redux';
 
+import {main_display} from 'states/order-actions.js';
+
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
+
+import {
+    Button
+} from 'reactstrap';
+
+
+
 class Record extends React.Component{
 
       constructor(props){
@@ -14,6 +28,12 @@ class Record extends React.Component{
 
     }
 
+    componentDidMount() {
+        this.props.dispatch(main_display());
+    }
+    componentWillUnmount() {
+        this.props.dispatch(main_display());
+    }
     render(){
       var total_records = [];
 
@@ -27,7 +47,7 @@ class Record extends React.Component{
         if(i%2 === 1)
           total_records = [...total_records,<br/>,<br/>];
       }
-      
+
       console.log(total_records);
       return(
         <div>
@@ -35,6 +55,7 @@ class Record extends React.Component{
           {
             total_records
           }
+          <Button tag={Link} to=''>返回</Button>
           {/* {this.props.records[0].map((m=>
             <li key = {m.name}>{m.name}&nbsp;:&nbsp;
                                {m.quantity}&nbsp;&nbsp;
@@ -51,6 +72,7 @@ class Record extends React.Component{
     }
 
 
+
 }
 
 
@@ -58,6 +80,7 @@ class Record extends React.Component{
 
 export default connect((state) => {
     return {
-        ...state.record
+        ...state.record,
+        ...state.MainButton
     };
 })(Record);

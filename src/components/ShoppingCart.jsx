@@ -14,11 +14,20 @@ import {delete_from_cart_pancake,
         submit
        } from 'states/order-actions.js';
 
+       import {
+           BrowserRouter as Router,
+           Route,
+           Link
+       } from 'react-router-dom'
 
 
 import {
    Form, FormGroup, Label, Input, FormFeedback, FormText ,Button , Col
 } from 'reactstrap';
+
+import {main_display,clear_pancake,clear_drink} from 'states/order-actions.js';
+
+
 
 
 class ShoppingCart extends React.Component{
@@ -29,24 +38,53 @@ class ShoppingCart extends React.Component{
 
       this.handelDelete = this.handelDelete.bind(this);
       this.handelDeleteDrink = this.handelDeleteDrink.bind(this);
-      this.handelSubmit = this.handelSubmit.bind(this);
+      // this.handelSubmit = this.handelSubmit.bind(this);
+      this.handelAdd = this.handelAdd.bind(this);
   }
 
+  componentDidMount() {
+      this.props.dispatch(main_display());
+  }
+  componentWillUnmount() {
+      this.props.dispatch(main_display());
 
+
+  }
 
     render(){
+        var total_price = 0;
+        for(var i = 0;i<this.props.present.length;i++)
+        {
+            total_price += this.props.present[i].price*this.props.present[i].quantity;
+        }
+        for(var i = 0;i<this.props.present2.length;i++)
+        {
+            total_price += this.props.present2[i].price*this.props.present2[i].quantity;
+        }
+        console.log(total_price);
         return(
             <div>
                 {this.props.present.map((m=>
                   <li key = {m.name}>{m.name}&nbsp;:&nbsp;
                                      {m.quantity}&nbsp;&nbsp;
+                                     {m.price}&nbsp;&nbsp;
+                                     {m.quantity * m.price}&nbsp;&nbsp;
                     <button onClick = {() => this.handelDelete(m.name)}>刪除</button>
                   </li>))}
                 {this.props.present2.map((m=>
                   <li key = {m.name}>{m.name}&nbsp;:&nbsp;
                                      {m.quantity}&nbsp;&nbsp;
+                                     {m.price}&nbsp;&nbsp;
+                                     {m.quantity * m.price}&nbsp;&nbsp;
                     <button onClick = {() => this.handelDeleteDrink(m.name)}>刪除</button>
                   </li>))}
+
+                  {total_price}
+
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                
 
                 <Form>
                   <FormGroup>
@@ -66,10 +104,14 @@ class ShoppingCart extends React.Component{
                       <Label for="email" name="email" >e-mail</Label>
                       <Input type="email" name="email" placeholder="請輸入e-mail" required></Input>
                     </Col>
+
+
                   </FormGroup>
                   <FormGroup check row>
                     <Col sm={{ size: 5, offset: 2 }}>
-                      <Button onClick = {() => this.handelSubmit(this.props.present,this.props.present2)}>Submit</Button>
+                      <Button   type = "submit" formTarget="_blank">Submit</Button>
+                      <Button  onClick={() => this.handelAdd(this.props.present,this.props.present2)}>加到紀錄</Button>
+                      <Button tag={Link} to=''>返回</Button>
                     </Col>
                   </FormGroup>
                 </Form>
@@ -78,6 +120,9 @@ class ShoppingCart extends React.Component{
         )
 
     }
+
+
+
 
     handelDelete(item){
       //console.log(item);
@@ -89,12 +134,18 @@ class ShoppingCart extends React.Component{
       this.props.dispatch(delete_from_cart_drink(item));
     }
 
-    handelSubmit(present1,present2){
+    handelAdd(present1,present2){
       console.log(present1);
       console.log(present2);
         this.props.dispatch(submit(present1,present2));
+
     }
 
+    // handelSubmit(){
+    //   console.log("11111111");
+    //    this.props.dispatch(clear_pancake());
+    //    this.props.dispatch(clear_drink());
+    // }
 
 
 
@@ -106,6 +157,7 @@ export default connect((state) => {
     return {
         ...state.order,
         ...state.order2,
-        ...state.Record
+        ...state.Record,
+        ...state.MainButton
     };
 })(ShoppingCart);

@@ -15,6 +15,23 @@ import {
   DirectionsRenderer,
 } from "react-google-maps";
 
+import {connect} from 'react-redux';
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
+import thunkMiddleware from 'redux-thunk';
+// import loggerMiddleware from 'redux-logger';
+import {Provider} from 'react-redux';
+
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
+
+
+
+import {main_display} from 'states/order-actions.js';
+
+
 const GettingStartedGoogleMap = withGoogleMap(props => (
   <GoogleMap
     ref={props.onMapLoad}
@@ -42,7 +59,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
  lng_g = position.coords.longitude;
 });
 
-export default class Contact extends React.Component {
+class Contact extends React.Component {
 
   constructor(props){
     super(props);
@@ -69,8 +86,11 @@ export default class Contact extends React.Component {
   }
 
   componentDidMount() {
-
-    }
+      this.props.dispatch(main_display());
+  }
+  componentWillUnmount() {
+      this.props.dispatch(main_display());
+  }
 
   handleMapLoad(map) {
     this._mapComponent = map;
@@ -97,22 +117,33 @@ export default class Contact extends React.Component {
   }
   render() {
     return (
-      <div style={{height : "500px"}}>
-        <GettingStartedGoogleMap
-          containerElement={
-            <div style={{ height: `100%` }} />
-          }
-          mapElement={
-            <div style={{ height: `100%` }} />
-          }
-          onMapLoad={this.handleMapLoad}
-          content_row1={this.state.content_row1}
-          content_row2={this.state.content_row2}
-          center={new google.maps.LatLng(24.7936,120.994349)}
-          directions={this.state.directions}
-        />
-      <Button color="secondary" onClick={this.handleDirection}>導航</Button>
-      </div>
+      <div>
+        <div style={{height : "500px"}}>
+          <GettingStartedGoogleMap
+            containerElement={
+              <div style={{ height: `100%` }} />
+            }
+            mapElement={
+              <div style={{ height: `100%` }} />
+            }
+            onMapLoad={this.handleMapLoad}
+            content_row1={this.state.content_row1}
+            content_row2={this.state.content_row2}
+            center={new google.maps.LatLng(24.7936,120.994349)}
+            directions={this.state.directions}
+          />
+        <Button color="secondary" onClick={this.handleDirection}>導航</Button>
+        </div>
+        <Button tag={Link} to=''>返回</Button>
+    </div>
+
     );
   }
 }
+
+
+export default connect((state) => {
+    return {
+        ...state.MainButton
+    };
+})(Contact);

@@ -28,7 +28,8 @@ export function order(state = initOrderState, action){
           if(state.quantity[action.id] > 0)
           {
             UpdatPresent.push({name:state.item[action.id],
-                                quantity:state.quantity[action.id]});
+                                quantity:state.quantity[action.id],
+                              price:state.price[action.id]});
           }
             return{
               ...state,
@@ -47,6 +48,12 @@ export function order(state = initOrderState, action){
               ...state,
               present: UpdatPresent
             };
+          case '@ORDER/CLEARPANCAKE':
+              return{
+                ...state,
+                present : [],
+                quantity : [0,0,0]
+              }
         default:
             return state;
     }
@@ -85,7 +92,8 @@ export function order2(state = initOrderState2, action){
         if(state.quantity2[action.id] > 0)
         {
           UpdatPresent.push({name:state.item2[action.id],
-                              quantity:state.quantity2[action.id]});
+                              quantity:state.quantity2[action.id],
+                            price:state.price2[action.id]});
         }
 
           return{
@@ -105,6 +113,12 @@ export function order2(state = initOrderState2, action){
             ...state,
             present2: UpdatPresent
           };
+      case '@ORDER2/CLEARDRINK':
+        return{
+            ...state,
+            present2: [],
+            quantity2: [0,0]
+        };
       default:
           return state;
   }
@@ -143,14 +157,42 @@ export function record(state = initRecordState,action){
         //                    name2:action.p2.name,
         //                    quantity:action.p1.quantity,
         //                    quantity2:action.p2.quantity});
-      
+
         if(action.p1.length !== 0 || action.p2.length !== 0){
           state.records = [...state.records,action.p1,action.p2];
           console.log("in if");
+
         }
       return{
         ...state
         // records : UpdatRecords
+      };
+    default:
+        return state;
+  }
+}
+
+
+
+
+const initMainButtonState = {
+  display:true
+};
+
+
+
+export function MainButton(state = initMainButtonState,action){
+  switch(action.type){
+    case '@MAINBUTTON/MAINDISPLAY':
+      // var x;
+      // if(state.display === true)
+      //   x = false;
+      // else
+      //   x = false;
+      return{
+        ...state,
+        display: !state.display
+
       };
     default:
         return state;
