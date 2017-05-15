@@ -70,11 +70,15 @@ export function clear_drink(){
 
 ////////////////    Record     //////////////
 
-export function submit(p1,p2){
+export function submit(p1,p2,name,phone,email,time){
     return{
         type: '@RECORD/SUBMIT',
         p1,
-        p2
+        p2,
+        name,
+        phone,
+        email,
+        time
     }
 }
 

@@ -12,6 +12,7 @@ import {Provider} from 'react-redux';
 
 import {add,minus,add_to_cart} from 'states/order-actions.js';
 
+import './PanCakeItem.css';
 
 import {
     Collapse,
@@ -42,25 +43,7 @@ class PanCakeItem extends React.Component{
 
   }
 
-      // add(prevState){
-      //   this.setState((prevState, props) => (
-      //     {
-      //       quantity : prevState.quantity +1
-      //     }
-      //   ))
-      // }
-      //
-      //
-      // minus(prevState){
-      //   if(this.state.quantity > 0)
-      //   {
-      //     this.setState((prevState, props) => (
-      //       {
-      //         quantity : prevState.quantity -1
-      //       }
-      //     ))
-      //   }
-      // }
+
 
 
       func_add(id)
@@ -85,12 +68,19 @@ class PanCakeItem extends React.Component{
 
         render(){
             return(
+              // <div>
+              //   <span>{this.props.text}</span>
+              //   <button onClick={() => this.func_minus(this.props.id_num)}>-</button>
+              //   <span>{this.props.quantity[this.props.id_num]}</span>
+              //   <button  onClick={() => this.func_add(this.props.id_num)}>+</button>
+              //   <button onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
+              // </div>
               <div>
-                <span>{this.props.text}</span>
-                <button onClick={() => this.func_minus(this.props.id_num)}>-</button>
+
+                <button className="dickbtn" onClick={() => this.func_minus(this.props.id_num)}>-</button>
                 <span>{this.props.quantity[this.props.id_num]}</span>
-                <button  onClick={() => this.func_add(this.props.id_num)}>+</button>
-                <button onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
+                <button className="dickbtn" onClick={() => this.func_add(this.props.id_num)}>+</button>
+                <button className="dickbtn" onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
               </div>
             )
         }

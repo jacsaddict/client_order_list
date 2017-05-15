@@ -24,8 +24,8 @@ import {
     Input,
     Button
 } from 'reactstrap';
-//import css
-//
+
+import './Order.css';
 
 import PanCakeList from 'components/PanCakeList.jsx';
 import DrinkList from 'components/DrinkList.jsx';
@@ -60,33 +60,29 @@ class Order extends React.Component {
 
   render(){
     return(
-      <div>
-      {/* <Navbar color='faded' light toggleable>
-      <Collapse isOpen={true} navbar>
-          <Nav navbar>
-              <NavItem>
-                  <NavLink onClick={this.handlePanCakeList}><Button color="secondary">鬆餅</Button></NavLink>
-
-              </NavItem>
-              <NavItem>
-                  <NavLink onClick={this.handleDrinkList}><Button color="secondary">飲品</Button></NavLink>
-              </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar> */}
-
-
-
-                <Button color="secondary" onClick={this.handlePanCakeList}>鬆餅</Button>
-                <Button color="secondary" onClick={this.handleDrinkList}>飲品</Button>
+      // <div>
+      //           <Button color="secondary" onClick={this.handlePanCakeList}>鬆餅</Button>
+      //           <Button color="secondary" onClick={this.handleDrinkList}>飲品</Button>
+      //
+      //
+      //           <Button tag={Link} to=''>返回</Button>
+      //     {this.state.DrinkList_open === 1 && <DrinkList />}
+      //     {this.state.PanCakeList_open === 1 && <PanCakeList />}
+      //
+      //   </div>
+      <div id="bigdiv">
+      <ul>
+            <li><Button color="secondary" onClick={this.handlePanCakeList}><a  className="round green">鬆餅<span class="round"></span></a></Button></li>
+            <li><Button color="secondary" onClick={this.handleDrinkList}><a  className="round red">飲料<span className="round"></span></a></Button></li>
+          	<li><Button tag={Link} to=''><a className="round yellow">返回<span className="round"></span></a></Button></li>
+      </ul>
 
 
-                <Button tag={Link} to=''>返回</Button>
+
           {this.state.DrinkList_open === 1 && <DrinkList />}
           {this.state.PanCakeList_open === 1 && <PanCakeList />}
 
         </div>
-
     )
   }
 

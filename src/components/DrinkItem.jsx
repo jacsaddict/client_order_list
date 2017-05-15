@@ -10,6 +10,7 @@ import {Provider} from 'react-redux';
 
 import {add_drink,minus_drink,add_to_cart_drink} from 'states/order-actions.js';
 
+import './DrinkItem.css';
 
 import {
     Collapse,
@@ -52,12 +53,18 @@ class DrinkItem extends React.Component{
       }
         render(){
             return(
+              // <div>
+              //   <span>{this.props.text}</span>
+              //   <button onClick={() => this.func_minus(this.props.id_num)}>-</button>
+              //   <span>{this.props.quantity2[this.props.id_num]}</span>
+              //   <button  onClick={() => this.func_add(this.props.id_num)}>+</button>
+              //   <button  onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
+              // </div>
+
               <div>
-                <span>{this.props.text}</span>
-                <button onClick={() => this.func_minus(this.props.id_num)}>-</button>
-                <span>{this.props.quantity2[this.props.id_num]}</span>
-                <button  onClick={() => this.func_add(this.props.id_num)}>+</button>
-                <button  onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
+                <button className="dickbtn" onClick={() => this.func_minus(this.props.id_num)}>-</button>
+                <button   className="dickbtn" onClick={() => this.func_add(this.props.id_num)}>+</button>
+                <button  className="dickbtn" onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
               </div>
             )
         }

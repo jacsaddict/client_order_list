@@ -132,8 +132,8 @@ class Contact extends React.Component {
             center={new google.maps.LatLng(24.7936,120.994349)}
             directions={this.state.directions}
           />
-        <Button color="secondary" onClick={this.handleDirection}>導航</Button>
         </div>
+        <Button color="secondary" onClick={this.handleDirection}>導航</Button>
         <Button tag={Link} to=''>返回</Button>
     </div>
 

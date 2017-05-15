@@ -44,27 +44,33 @@ class Record extends React.Component{
         {
               total_records = [...total_records,this.props.records[i][j].name,this.props.records[i][j].quantity];
         }
+
         if(i%2 === 1)
-          total_records = [...total_records,<br/>,<br/>];
+          total_records = [...total_records,this.props.client[(i-1)/2].name,this.props.client[(i-1)/2].phone,this.props.client[(i-1)/2].email,this.props.client[(i-1)/2].id,<br/>,<br/>];
+          // console.log(this.props.records);
+           console.log(this.props.client);
       }
 
       console.log(total_records);
       return(
         <div>
 
-          {
+          {/* {
             total_records
-          }
+          } */}
           <Button tag={Link} to=''>返回</Button>
-          {/* {this.props.records[0].map((m=>
-            <li key = {m.name}>{m.name}&nbsp;:&nbsp;
-                               {m.quantity}&nbsp;&nbsp;
-            </li>))}
 
-            {this.props.records[1].map((m=>
-              <li key = {m.name}>{m.name}&nbsp;:&nbsp;
-                                 {m.quantity}&nbsp;&nbsp;
-              </li>))} */}
+          {this.props.records.map((m=>
+            <div>
+                {m.map((k=>
+                  <li key = {k.name}>{k.name}&nbsp;:&nbsp;
+                                     {k.quantity}&nbsp;&nbsp;
+                </li>
+                ))}
+            </div>
+            ))}
+
+
 
 
         </div>

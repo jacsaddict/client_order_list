@@ -79,15 +79,15 @@ class PostForm extends React.Component {
     }
 
     handleInputChange(e) {
-        // const text = e.target.value
-        // this.setState({inputValue: text});
-        // if (text) {
-        //     this.setState({inputDanger: false});
-        // }
-        this.props.dispatch(PostInput(e.target.value));
-        if(e.target.value){
-            this.props.dispatch(Danger(false));
+        const text = e.target.value
+        this.setState({inputValue: text});
+        if (text) {
+            this.setState({inputDanger: false});
         }
+        // this.props.dispatch(PostInput(e.target.value));
+        // if(e.target.value){
+        //     this.props.dispatch(Danger(false));
+        // }
     }
 
     handleMoodToggle(e) {

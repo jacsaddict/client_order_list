@@ -10,7 +10,7 @@ import thunkMiddleware from 'redux-thunk';
 import {Provider} from 'react-redux';
 
 
-
+import './PanCakeList.css';
 
 import {
     Collapse,
@@ -50,21 +50,39 @@ export default class PanCakeList extends React.Component{
 
     render(){
         return(
-          <div>
-          {/* <Collapse isOpen={true} navbar>
-              <Nav navbar>
-                  <NavItem>
-                      <NavLink onClick={this.handlePanCake1}>蜂蜜鬆餅</NavLink>
-                  </NavItem>
-                  <NavItem>
-                      <NavLink onClick={this.handlePanCake2}>原味鬆餅</NavLink>
-                  </NavItem>
-              </Nav>
-            </Collapse> */}
+            // <div>
+            // <PanCakeItem text = {"原味鬆餅"} id_num = {0}/>
+            // <PanCakeItem text = {"巧克力鬆餅"} id_num = {1}/>
+            // <PanCakeItem text = {"鬆餅"} id_num = {2}/>
+            // </div>
 
-            <PanCakeItem text = {"原味鬆餅"} id_num = {0}/>
-            <PanCakeItem text = {"巧克力鬆餅"} id_num = {1}/>
-            <PanCakeItem text = {"鬆餅"} id_num = {2}/>
+            <div id="PCL">
+
+            <div id="pricing-table" className="clear">
+                <div className="plan">
+                    <h3>原味鬆餅<span>$25</span></h3>
+                    <a className="signup" ><PanCakeItem text = {"原味鬆餅"} id_num = {0}/></a>
+                </div>
+                <div className="plan">
+                    <h3>巧克力鬆餅<span>$30</span></h3>
+                    <a className="signup" ><PanCakeItem text = {"巧克力鬆餅"} id_num = {1}/></a>
+                </div>
+                <div className="plan">
+                    <h3>抹茶鬆餅<span>$30</span></h3>
+                    <a className="signup" ><PanCakeItem text = {"抹茶鬆餅"} id_num = {2}/></a>
+                </div>
+                <div className="plan">
+                    <h3>花生鬆餅<span>$30</span></h3>
+                    <a className="signup" ><PanCakeItem text = {"花生鬆餅"} id_num = {3}/></a>
+                </div>
+                <div className="plan">
+                    <h3>勁辣雞鬆餅<span>$45</span></h3>
+                    <a className="signup" ><PanCakeItem text = {"勁辣雞鬆餅"} id_num = {4}/></a>
+                </div>
+
+            </div>
+
+
             </div>
 
         )

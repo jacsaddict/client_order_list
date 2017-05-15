@@ -1,3 +1,5 @@
+import uuid from 'uuid/v4';
+
 const initOrderState = {
     item :["原味鬆餅","巧克力鬆餅","鬆餅"],
     quantity :[0,0,0],
@@ -91,14 +93,14 @@ export function order2(state = initOrderState2, action){
 
         if(state.quantity2[action.id] > 0)
         {
-          UpdatPresent.push({name:state.item2[action.id],
+          state.present2 = [...state.present2,
+                              {name:state.item2[action.id],
                               quantity:state.quantity2[action.id],
-                            price:state.price2[action.id]});
+                              price:state.price2[action.id]}];
         }
 
           return{
-            ...state,
-            present2 : UpdatPresent
+            ...state
           };
       case '@ORDER2/DELETEDRINK':
           var UpdatPresent = state.present2.filter(function(item){
@@ -129,7 +131,8 @@ export function order2(state = initOrderState2, action){
 
 
 const initRecordState = {
-  records : []
+  records : [],
+  client :[]
 };
 
 export function record(state = initRecordState,action){
@@ -137,7 +140,7 @@ export function record(state = initRecordState,action){
     case '@RECORD/SUBMIT':
         // console.log(action.p1);
         // console.log(action.p2);
-        var UpdatRecords = [];
+        //var Updatclient = [];
         // for(var i = 0; i < action.p1.length; i++)
         // {
         //     UpdatRecords.push({
@@ -161,6 +164,13 @@ export function record(state = initRecordState,action){
         if(action.p1.length !== 0 || action.p2.length !== 0){
           state.records = [...state.records,action.p1,action.p2];
           console.log("in if");
+        state.client = [...state.client,
+                          {name:action.name,
+                          phone:action.phone,
+                          email:action.email,
+                          time:action.time,
+                          id:uuid()}
+                       ];
 
         }
       return{
