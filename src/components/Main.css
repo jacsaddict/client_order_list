@@ -28,7 +28,12 @@
 .main .search i:hover {
     color: #5bc0de;
 }
-
+.bg-faded{
+  height: 5rem;
+}
+.nav-item{
+  height: 100%;
+}
 @media (min-width: 576px) {
     .main .search {
         width: 10rem;
@@ -48,6 +53,7 @@
 .btn{
   margin-top: 0;
   margin-bottom: 0;
+  color: 	#272727		;
 }
 #icon1{
   position: center;
@@ -56,8 +62,16 @@
 #image1{
   width: 150px;
   height: 150px;
-}
 
+}
+.main-button{
+  height: 30%;
+
+}
+.sss{
+  color:#2894FF;
+
+}
 /*slider*/
 /* Slider */
 .slick-slider
@@ -149,7 +163,7 @@
 }
 .slick-slide img
 {
-    width: 350px;
+    width: 100%;
     height: 320px;
     border-radius: 9px;
     align-items: center;
@@ -204,8 +218,8 @@
   }
   .slick-slide img
   {
-      width: 250px;
-      height: 240px;
+      width: 100%;
+      height: 300px;
       border-radius: 9px;
       align-items: center;
       display: block;

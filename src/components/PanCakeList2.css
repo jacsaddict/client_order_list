@@ -1,0 +1,33 @@
+/* Border styles */
+#table-1 thead, #table-1 tr {
+border-top-width: 1px;
+border-top-style: solid;
+border-top-color: rgb(255, 255, 255);
+
+}
+#table-1 {
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: rgb(255, 255, 255);
+text-align: center;
+width: 100%;
+opacity: 0.85;
+}
+
+/* Padding and font style */
+#table-1 td, #table-1 th {
+padding: 5px 10px;
+font-size: 12px;
+font-family: Verdana;
+color: rgb(0, 0, 0);
+}
+
+/* Alternating background colors */
+#table-1 tr:nth-child(even) {
+background: rgb(176,196,222);
+
+}
+#table-1 tr:nth-child(odd) {
+background: #FFF;
+
+}

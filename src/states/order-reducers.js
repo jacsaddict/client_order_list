@@ -1,9 +1,9 @@
 import uuid from 'uuid/v4';
 
 const initOrderState = {
-    item :["原味鬆餅","巧克力鬆餅","鬆餅"],
-    quantity :[0,0,0],
-    price : [30,35,40],
+    item :["原味鬆餅","巧克力鬆餅","抹茶鬆餅","花生鬆餅"],
+    quantity :[0,0,0,0],
+    price : [25,30,30,30],
     present : []
 };
 
@@ -54,7 +54,7 @@ export function order(state = initOrderState, action){
               return{
                 ...state,
                 present : [],
-                quantity : [0,0,0]
+                quantity : [0,0,0,0]
               }
         default:
             return state;
@@ -66,9 +66,9 @@ export function order(state = initOrderState, action){
 
 
 const initOrderState2 = {
-    item2 : ["紅茶","綠茶"],
-    quantity2: [0,0],
-    price2: [10,15],
+    item2 : ["檸檬紅茶","冰淇淋紅茶","冬瓜檸檬茶","百香雙響炮","英式水果茶"],
+    quantity2: [0,0,0,0,0],
+    price2: [35,30,35,40,30],
     present2: []
 };
 
@@ -119,7 +119,7 @@ export function order2(state = initOrderState2, action){
         return{
             ...state,
             present2: [],
-            quantity2: [0,0]
+            quantity2: [0,0,0,0,0]
         };
       default:
           return state;

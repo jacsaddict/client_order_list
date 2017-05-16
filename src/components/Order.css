@@ -97,33 +97,36 @@ text-align: center;
 	}
 
 	a.red {
-		background-color:#FFA042;
-		color: #FFA042;
-		border-color: #FFA042;
+		background-color:rgb(176,196,222);
+		color: rgb(176,196,222);
+		border-color: rgb(176,196,222);
+    opacity: 1;
 	}
 
 	a.red:hover {
-		color: rgba(1,151,171,1);
+		color: rgb(176,196,222);
 	}
 
 	a.green {
-		background-color: #FFAF60;
-		color: #FFAF60;
-		border-color: #FFAF60;
+		background-color: #FFFFFF;
+		color: #FFFFFF;
+		border-color: #FFFFFF;
+    opacity: 0.8;
 	}
 
 	a.green:hover {
-		color: rgba(1,151,171,1);
+		color: rgb(176,196,222);
 	}
 
 	a.yellow {
-		background-color:#FFAF60;
-		color: #FFAF60;
-		border-color: #FFAF60;
+		background-color:#FFFFFF;
+		color: #FFFFFF;
+		border-color: #FFFFFF;
+    opacity: 0.8;
 	}
 
 	a.yellow:hover {
-		color: rgba(252,227,1,1);
+		color: rgb(176,196,222);
 	}
 
 	.round span.round {

@@ -76,11 +76,10 @@ class PanCakeItem extends React.Component{
               //   <button onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
               // </div>
               <div>
-
-                <button className="dickbtn" onClick={() => this.func_minus(this.props.id_num)}>-</button>
-                <span>{this.props.quantity[this.props.id_num]}</span>
-                <button className="dickbtn" onClick={() => this.func_add(this.props.id_num)}>+</button>
-                <button className="dickbtn" onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
+                <button className="dickbtn" id = "but" onClick={() => this.func_minus(this.props.id_num)}>-</button> &nbsp;
+                <span>{this.props.quantity[this.props.id_num]}</span> &nbsp;
+                <button className="dickbtn" id = "but" onClick={() => this.func_add(this.props.id_num)}>+</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button className="dickbtn" id = "but" onClick={() => this.func_add_to_cart(this.props.id_num)}>加入購物車</button>
               </div>
             )
         }
