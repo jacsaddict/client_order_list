@@ -6,7 +6,7 @@ import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
 import {Provider} from 'react-redux';
-
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import {main_display} from 'states/order-actions.js';
 
 import {
@@ -19,7 +19,7 @@ import {
     Button
 } from 'reactstrap';
 
-
+import './Record.css';
 
 class Record extends React.Component{
 
@@ -51,7 +51,10 @@ class Record extends React.Component{
            console.log(this.props.client);
       }
 
-      console.log(total_records);
+      // console.log(total_records);
+      console.log(this.props.records);
+      console.log(this.props.records2);
+
       return(
         <div>
 
@@ -60,17 +63,49 @@ class Record extends React.Component{
           } */}
           <Button tag={Link} to=''>返回</Button>
 
-          {this.props.records.map((m=>
+
+
+          {/* {this.props.records.map((m=>
             <div>
+              {m.map((k=>
+                    <ListGroupItem className = "ShoppingCart-list"  key = {k.name}>
+                                       <span className = "topic">{k.name}</span>
+                                       <span className = "topic">{k.quantity}</span>
+                                       <span className = "topic">{k.price}</span>
+                                       <span className = "topic">{k.quantity * k.price}</span>
+                    </ListGroupItem>))}
+
+           </div>
+         ))}
+
+
+         {this.props.records2.map((m=>
+           <div>
+             {m.map((k=>
+                   <ListGroupItem className = "ShoppingCart-list"  key = {k.name}>
+                                      <span className = "topic">{k.name}</span>
+                                      <span className = "topic">{k.quantity}</span>
+                                      <span className = "topic">{k.price}</span>
+                                      <span className = "topic">{k.quantity * k.price}</span>
+                   </ListGroupItem>))}
+
+          </div>
+        ))} */}
+
+
+             <ListGroup>
+          {this.props.records.map((m=>
+
+              <div>
                 {m.map((k=>
-                  <li key = {k.name}>{k.name}&nbsp;:&nbsp;
+                  <ListGroupItem key = {k.name} id = "list">{k.name}&nbsp;:&nbsp;
                                      {k.quantity}&nbsp;&nbsp;
-                </li>
-                ))}
+                </ListGroupItem>
+              ))}
             </div>
             ))}
 
-
+            </ListGroup>
 
 
         </div>

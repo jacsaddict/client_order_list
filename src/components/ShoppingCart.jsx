@@ -9,6 +9,8 @@ import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
 import {Provider} from 'react-redux';
 
+import { ListGroup, ListGroupItem } from 'reactstrap';
+
 import {delete_from_cart_pancake,
         delete_from_cart_drink,
         submit
@@ -20,7 +22,7 @@ import {delete_from_cart_pancake,
            Link
        } from 'react-router-dom'
 
-       import './ShoppingCart.css';
+import './ShoppingCart.css';
 
 import {
    Form, FormGroup, Label, Input, FormFeedback, FormText ,Button , Col,InputGroup, InputGroupButton
@@ -34,6 +36,12 @@ const showSecond = false;
 const str = showSecond ? 'HH:mm:ss' : 'HH:mm';
 
 import moment from 'moment';
+//志容屌大大
+var Recaptcha = require('react-recaptcha');
+let recaptchaInstance;
+const resetRecaptcha = () => {
+  recaptchaInstance.reset();
+};
 
 
 class ShoppingCart extends React.Component{
@@ -70,22 +78,47 @@ class ShoppingCart extends React.Component{
         console.log(total_price);
         return(
             <div>
+              <ListGroup>
+                  <ListGroupItem>
+                      <span className = "topic">品項</span>
+                      <span className = "topic">數量</span>
+                      <span className = "topic">單價</span>
+                      <span className = "topic">總價</span>
+                  </ListGroupItem>
                 {this.props.present.map((m=>
-                  <li key = {m.name}>{m.name}&nbsp;:&nbsp;
-                                     {m.quantity}&nbsp;&nbsp;
-                                     {m.price}&nbsp;&nbsp;
-                                     {m.quantity * m.price}&nbsp;&nbsp;
-                    <button onClick = {() => this.handelDelete(m.name)}>刪除</button>
-                  </li>))}
-                {this.props.present2.map((m=>
-                  <li key = {m.name}>{m.name}&nbsp;:&nbsp;
-                                     {m.quantity}&nbsp;&nbsp;
-                                     {m.price}&nbsp;&nbsp;
-                                     {m.quantity * m.price}&nbsp;&nbsp;
-                    <button onClick = {() => this.handelDeleteDrink(m.name)}>刪除</button>
-                  </li>))}
+                  <ListGroupItem className = "ShoppingCart-list"  key = {m.name}>
+                                     <span className = "topic">{m.name}</span>
+                                     <span className = "topic">{m.quantity}</span>
+                                     <span className = "topic">{m.price}</span>
+                                     <span className = "topic">{m.quantity * m.price}</span>
+                                     <span className = "topic"><Button className="trashbtn" onClick = {() => this.handelDelete(m.name)}><img src={`images/trash.png`} id="image7"/></Button></span>
 
-                  {total_price}
+                  </ListGroupItem>))}
+
+
+
+                {this.props.present2.map((m=>
+                  <ListGroupItem className = "ShoppingCart-list" key = {m.name}>
+                                     <span className = "topic">{m.name}</span>
+                                     <span className = "topic">{m.quantity}</span>
+                                     <span className = "topic">{m.price}</span>
+                                     <span className = "topic">{m.quantity * m.price}</span>
+                                     <span className = "topic"><Button className="trashbtn" onClick = {() => this.handelDeleteDrink(m.name)}><img src={`images/trash.png`} id="image7"/></Button></span>
+
+                  </ListGroupItem>))}
+
+              </ListGroup>
+
+              <ListGroupItem>
+                <span className = "topic"></span>
+                <span className = "topic"></span>
+                <span className = "topic"></span>
+                <span className = "topic">{total_price}</span>
+                <span className = "topic"></span>
+
+              </ListGroupItem>
+            {/* {total_price > 0 &&
+              total_price} */}
 
                   <br></br>
                   <br></br>
@@ -136,6 +169,21 @@ class ShoppingCart extends React.Component{
                     </Col>
                   </FormGroup>
                   </div>
+                  <div>
+                    <div className="cllockff">
+                    <FormGroup>
+                      <Col sm={{ size: 6, push: 2, pull: 2, offset: 1 }}>
+                        <Label for="time" name="time" ></Label>
+                        <br></br>
+                        <div className="form-group" id="captcha-holder">
+                      <Recaptcha sitekey="6LexliEUAAAAAKTXM_w46doc9l7b3cKJ4VKRy15S" render="explicit" verifyCallback={this.props.onCaptchaVerify} onloadCallback={console.log.bind(this, "recaptcha loaded")}/>
+                  </div>
+
+                      </Col>
+                    </FormGroup>
+                    </div>
+                  </div>
+                  <br></br>
                   <FormGroup check row>
                     <Col sm={{ size: 6, push: 2, pull: 2, offset: 1 }}>
                       <Button   type = "submit" formTarget="_blank">Submit</Button>

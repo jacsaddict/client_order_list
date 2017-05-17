@@ -93,7 +93,7 @@ export default class DrinkList extends React.Component{
                 <tr>
                     <td>英式水果茶</td>
                     <td>$30</td>
-                    <td><DrinkItem text = {"英式水果茶"} id_num = {3}/></td>
+                    <td><DrinkItem text = {"英式水果茶"} id_num = {4}/></td>
                 </tr>
 
             </table>

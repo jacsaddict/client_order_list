@@ -72,7 +72,7 @@ class Order extends React.Component {
       //   </div>
       <div id="bigdiv">
       <ul>
-            <li><Button color="secondary" onClick={this.handlePanCakeList}><a  className="round green">鬆餅<span class="round"></span></a></Button></li>
+            <li><Button color="secondary" onClick={this.handlePanCakeList}><a  className="round green">鬆餅<span className="round"></span></a></Button></li>
             <li><Button color="secondary" onClick={this.handleDrinkList}><a  className="round red">飲料<span className="round"></span></a></Button></li>
           	<li><Button tag={Link} to=''><a className="round yellow">返回<span className="round"></span></a></Button></li>
       </ul>

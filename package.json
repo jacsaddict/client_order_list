@@ -24,6 +24,7 @@
     "react-dom": "^15.5.3",
     "react-fb-like": "^0.4.4",
     "react-google-maps": "^7.0.0",
+    "react-recaptcha": "^2.2.6",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.0.0",
     "react-slick": "^0.14.11",

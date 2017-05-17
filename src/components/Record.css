@@ -1,0 +1,12 @@
+#record_component {
+  border: 3px 30px ;
+  border-style: solid;
+  border-color: rgb(255,255,255);
+
+  border-width: 3px;
+}
+
+#list {
+  height: 2rem;
+  width: 100%
+}

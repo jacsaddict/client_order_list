@@ -132,6 +132,7 @@ export function order2(state = initOrderState2, action){
 
 const initRecordState = {
   records : [],
+  // records2 : [],
   client :[]
 };
 
@@ -163,6 +164,7 @@ export function record(state = initRecordState,action){
 
         if(action.p1.length !== 0 || action.p2.length !== 0){
           state.records = [...state.records,action.p1,action.p2];
+          // state.records2 = [...state.records2,action.p2];
           console.log("in if");
         state.client = [...state.client,
                           {name:action.name,
